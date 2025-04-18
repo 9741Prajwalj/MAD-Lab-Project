@@ -20,7 +20,8 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -56,4 +57,5 @@ dependencies {
     debugImplementation libs.androidx.ui.test.manifest
     implementation libs.androidx.appcompat.v161
     implementation libs.google.material
+    implementation libs.material.v1110
 }
