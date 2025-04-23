@@ -3,16 +3,17 @@ package com.mlt.mad_lab_project;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.SharedPreferences;
 import com.google.android.material.button.MaterialButton;
 
-
 public class HomeActivity extends AppCompatActivity {
 
     private TextView tvWelcome, tvUserDetails;
-    private MaterialButton btnTogglePassword, btnLogout; // Changed to MaterialButton
+    private ImageButton btnCalculator, btnLocation, btnMusic, btnCamera;
+    private MaterialButton btnTogglePassword, btnLogout;
     private SharedPreferences sharedPreferences;
     private boolean isPasswordVisible = false;
     private String realPassword;
@@ -22,16 +23,22 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        // Initialize views
         tvWelcome = findViewById(R.id.tvWelcome);
         tvUserDetails = findViewById(R.id.tvUserDetails);
         btnTogglePassword = findViewById(R.id.btnTogglePassword);
         btnLogout = findViewById(R.id.btnLogout);
+        btnCalculator = findViewById(R.id.btnCalculator);
+        btnLocation = findViewById(R.id.btnLocation);
+        btnMusic = findViewById(R.id.btnMusic);
+        btnCamera = findViewById(R.id.btnCamera);
 
         sharedPreferences = getSharedPreferences("user_data", MODE_PRIVATE);
         realPassword = sharedPreferences.getString("password", "");
 
         displayUserData(false); // Initially show masked password
 
+        // Set up button click listeners
         btnTogglePassword.setOnClickListener(v -> {
             isPasswordVisible = !isPasswordVisible;
             displayUserData(isPasswordVisible);
@@ -48,6 +55,22 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(new Intent(HomeActivity.this, LoginActivity.class));
             finish();
         });
+
+        btnCalculator.setOnClickListener(v ->
+                startActivity(new Intent(HomeActivity.this, CalculatorActivity.class))
+        );
+
+        btnLocation.setOnClickListener(v ->
+                startActivity(new Intent(HomeActivity.this, LocationActivity.class))
+        );
+
+        btnMusic.setOnClickListener(v ->
+                startActivity(new Intent(HomeActivity.this, MusicActivity.class))
+        );
+
+        btnCamera.setOnClickListener(v ->
+                startActivity(new Intent(HomeActivity.this, CameraActivity.class))
+        );
     }
 
     private void displayUserData(boolean showPassword) {

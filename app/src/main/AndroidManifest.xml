@@ -12,6 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Madlabproject"
         tools:targetApi="31">
+        <activity android:name=".CalculatorActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MadLabProject"/>
+        <activity android:name=".LocationActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MadLabProject"/>
+        <activity android:name=".MusicActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MadLabProject"/>
+        <activity android:name=".CameraActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MadLabProject"/>
         <!-- HomeActivity (not exported, only accessible internally) -->
         <activity
             android:name=".HomeActivity"
