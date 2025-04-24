@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 public class HomeActivity extends AppCompatActivity {
 
     private TextView tvWelcome, tvUserDetails;
-    private ImageButton btnCalculator, btnLocation, btnMusic, btnCamera;
+    private ImageButton btnCalculator, btnLocation, btnMusic, btnCamera, btnGallery;
     private MaterialButton btnTogglePassword, btnLogout;
     private SharedPreferences sharedPreferences;
     private boolean isPasswordVisible = false;
@@ -33,6 +33,7 @@ public class HomeActivity extends AppCompatActivity {
         btnLocation = findViewById(R.id.btnLocation);
         btnMusic = findViewById(R.id.btnMusic);
         btnCamera = findViewById(R.id.btnCamera);
+        btnGallery = findViewById(R.id.btnGallery);
 
         // Use the same preferences name as used in LoginActivity
         sharedPreferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE);
@@ -73,6 +74,11 @@ public class HomeActivity extends AppCompatActivity {
         btnCamera.setOnClickListener(v ->
                 startActivity(new Intent(HomeActivity.this, CameraActivity.class))
         );
+
+        btnGallery.setOnClickListener(v -> {
+            Intent intent = new Intent(this, GalleryActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void displayUserData(boolean showPassword) {

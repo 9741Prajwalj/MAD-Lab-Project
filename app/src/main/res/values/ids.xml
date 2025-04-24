@@ -32,4 +32,5 @@
     <item name="btn_delete" type="id" />
     <item name="btn_equals" type="id" />
     <item name="textView" type="id" />
+    <item name="fullscreenImageView" type="id" />
 </resources>

@@ -36,6 +36,17 @@
         <activity android:name=".CameraActivity"
             android:exported="false"
             android:theme="@style/Theme.MadLabProject"/>
+        <activity android:name=".GalleryActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MadLabProject"
+            android:parentActivityName=".HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomeActivity" />
+        </activity>
+        <activity android:name=".FullScreenImageActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MadLabProject"/>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.mlt.mad_lab_project.fileprovider"
@@ -66,5 +77,4 @@
             android:exported="false"
             android:theme="@style/Theme.MadLabProject"/> <!-- Added theme -->
     </application>
-
 </manifest>

@@ -32,10 +32,14 @@ public class CameraActivity extends AppCompatActivity {
         setContentView(R.layout.activity_camera);
 
         // Check camera permission
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
             ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.CAMERA},
+                    new String[]{
+                            Manifest.permission.CAMERA,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE
+                    },
                     REQUEST_CAMERA_PERMISSION);
         } else {
             dispatchTakePictureIntent();
@@ -77,34 +81,36 @@ public class CameraActivity extends AppCompatActivity {
     }
 
     private File createImageFile() throws IOException {
-        // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
-        );
+        String imageFileName = "MLT_APP_" + timeStamp + ".jpg";
 
-        // Save a file: path for use with ACTION_VIEW intents
+        // Create a dedicated directory
+        File storageDir = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "MyCameraApp");
+        if (!storageDir.exists()) {
+            storageDir.mkdirs();
+        }
+
+        File image = new File(storageDir, imageFileName);
         currentPhotoPath = image.getAbsolutePath();
         return image;
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            // Image saved to the path specified in currentPhotoPath
-            Toast.makeText(this, "Image saved to gallery", Toast.LENGTH_SHORT).show();
             galleryAddPic();
+
+            // Optional: Open the gallery automatically after capture
+            Intent intent = new Intent(this, GalleryActivity.class);
+            startActivity(intent);
+
             finish();
         } else {
             finish();
         }
     }
-
     private void galleryAddPic() {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         File f = new File(currentPhotoPath);
