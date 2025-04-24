@@ -16,5 +16,5 @@
     <color name="outline">#79747E</color>
     <color name="primary">#6750A4</color>
     <color name="on_primary">#FFFFFF</color>
-
+    <color name="invalid_color">#FFFFFF</color>
 </resources>

@@ -2,20 +2,33 @@ package com.mlt.mad_lab_project;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText etName, etEmail, etPassword, etConfirmPassword;
-    Button btnRegister;
-    TextView tvLogin;
+    private static final String USER_PREFS = "user_data";  // Must be identical
+    private static final String USER_LIST_KEY = "user_list";
+    private EditText etName, etEmail, etPassword, etConfirmPassword;
+    private SharedPreferences sharedPreferences;
+    private Gson gson = new Gson();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,46 +39,93 @@ public class RegisterActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         etConfirmPassword = findViewById(R.id.etConfirmPassword);
-        btnRegister = findViewById(R.id.btnRegister);
-        tvLogin = findViewById(R.id.tvLogin);
+        Button btnRegister = findViewById(R.id.btnRegister);
+        TextView tvLogin = findViewById(R.id.tvLogin);
 
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String name = etName.getText().toString();
-                String email = etEmail.getText().toString();
-                String password = etPassword.getText().toString();
-                String confirmPassword = etConfirmPassword.getText().toString();
+        sharedPreferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE);
 
-                if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(RegisterActivity.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
-                } else if (!password.equals(confirmPassword)) {
-                    Toast.makeText(RegisterActivity.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
-                } else {
-                    // In a real app, you would save the user data to a database here
-                    Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
-
-                    // Save user data to SharedPreferences for simplicity
-                    SharedPreferences sharedPreferences = getSharedPreferences("user_data", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("name", name);
-                    editor.putString("email", email);
-                    editor.putString("password", password);
-                    editor.apply();
-
-                    // Go to login screen
-                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                    finish();
-                }
-            }
+        btnRegister.setOnClickListener(v -> handleRegistration());
+        tvLogin.setOnClickListener(v -> {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
         });
+    }
 
-        tvLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                finish();
+    private void handleRegistration() {
+        String name = etName.getText().toString().trim();
+        String email = etEmail.getText().toString().trim().toLowerCase();
+        String password = etPassword.getText().toString().trim();
+        String confirmPassword = etConfirmPassword.getText().toString().trim();
+
+        if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            showToast("Please fill all fields");
+            return;
+        }
+
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            showToast("Please enter a valid email address");
+            return;
+        }
+
+        if (password.length() < 4 ) {
+            showToast("Password must be at least 6 characters");
+            return;
+        }
+
+        if (!password.equals(confirmPassword)) {
+            showToast("Passwords don't match");
+            return;
+        }
+
+        List<User> userList = getUserList();
+        Log.d("RegisterDebug", "Current users before add: " + userList);  // Debug
+        User newUser = new User(name, email, password);
+
+        if (userList.contains(newUser)) {
+            showToast("Email already registered");
+            return;
+        }
+
+        userList.add(new User(name, email, hashPassword(password)));
+        saveUserList(userList);
+
+        showToast("Registration successful");
+        startActivity(new Intent(this, LoginActivity.class));
+        finish();
+    }
+
+    private List<User> getUserList() {
+        String json = sharedPreferences.getString(USER_LIST_KEY, null);
+        if (json == null) {
+            return new ArrayList<>();
+        }
+        Type type = new TypeToken<List<User>>() {}.getType();
+        return gson.fromJson(json, type);
+    }
+
+    private void saveUserList(List<User> userList) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String json = gson.toJson(userList);
+        editor.putString(USER_LIST_KEY, json);
+        editor.apply();  // Make sure to use apply() or commit()
+
+        // DEBUG: Verify saved data
+        Log.d("RegisterDebug", "Saved users: " + json);
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+    private String hashPassword(String plainPassword) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(plainPassword.getBytes(StandardCharsets.UTF_8));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                return Base64.getEncoder().encodeToString(hash);
             }
-        });
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("Failed to hash password", e);
+        }
+        return plainPassword;
     }
 }

@@ -1,13 +1,14 @@
 package com.mlt.mad_lab_project;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import android.content.SharedPreferences;
 import com.google.android.material.button.MaterialButton;
+import com.google.gson.Gson;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -33,8 +34,8 @@ public class HomeActivity extends AppCompatActivity {
         btnMusic = findViewById(R.id.btnMusic);
         btnCamera = findViewById(R.id.btnCamera);
 
-        sharedPreferences = getSharedPreferences("user_data", MODE_PRIVATE);
-        realPassword = sharedPreferences.getString("password", "");
+        // Use the same preferences name as used in LoginActivity
+        sharedPreferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE);
 
         displayUserData(false); // Initially show masked password
 
@@ -50,7 +51,8 @@ public class HomeActivity extends AppCompatActivity {
 
         btnLogout.setOnClickListener(v -> {
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.clear();
+            // Only clear the current user, not all preferences
+            editor.remove("current_user");
             editor.apply();
             startActivity(new Intent(HomeActivity.this, LoginActivity.class));
             finish();
@@ -74,8 +76,19 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void displayUserData(boolean showPassword) {
-        String name = sharedPreferences.getString("name", "User");
-        String email = sharedPreferences.getString("email", "No email provided");
+        String userJson = sharedPreferences.getString("current_user", null);
+
+        if (userJson == null) {
+            tvWelcome.setText("Welcome!");
+            tvUserDetails.setText("User data not found.");
+            return;
+        }
+
+        // Parse user from JSON
+        User currentUser = new Gson().fromJson(userJson, User.class);
+        String name = currentUser.getName();
+        String email = currentUser.getEmail();
+        realPassword = currentUser.getPassword();  // This is now the original password
 
         String passwordDisplay = showPassword ? realPassword : maskPassword(realPassword);
 
