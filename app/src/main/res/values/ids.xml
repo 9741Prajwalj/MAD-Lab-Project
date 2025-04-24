@@ -31,4 +31,5 @@
     <item name="btn_0" type="id" />
     <item name="btn_delete" type="id" />
     <item name="btn_equals" type="id" />
+    <item name="textView" type="id" />
 </resources>
