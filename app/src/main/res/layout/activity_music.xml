@@ -1,13 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Music Player Coming Soon"
-        android:gravity="center"
-        android:textSize="24sp"/>
+    android:layout_height="match_parent"
+    android:background="#121212">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Album Art/Placeholder -->
+    <ImageView
+        android:id="@+id/albumArt"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/music_placeholder" />
+
+    <!-- Song Info -->
+    <TextView
+        android:id="@+id/songTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/albumArt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Song Title"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/artistName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/songTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="Artist Name"
+        android:textColor="#B3B3B3"
+        android:textSize="16sp" />
+
+    <!-- Progress Bar -->
+    <SeekBar
+        android:id="@+id/songProgress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/artistName"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:progressTint="#1DB954"
+        android:thumbTint="#1DB954" />
+
+    <!-- Time Indicators -->
+    <TextView
+        android:id="@+id/currentTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/songProgress"
+        android:layout_marginLeft="20dp"
+        android:text="0:00"
+        android:textColor="#B3B3B3" />
+
+    <TextView
+        android:id="@+id/totalTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/songProgress"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentEnd="true"
+        android:text="3:45"
+        android:textColor="#B3B3B3" />
+
+    <!-- Controls -->
+    <LinearLayout
+        android:id="@+id/controlsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/currentTime"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/btnPrevious"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="20dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_previous" />
+
+        <ImageButton
+            android:id="@+id/btnPlay"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_play" />
+
+        <ImageButton
+            android:id="@+id/btnNext"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_next" />
+    </LinearLayout>
+
+    <!-- Toggle Button for Song List -->
+    <ImageButton
+        android:id="@+id/btnToggleList"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/controlsLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_expand_more" />
+
+    <!-- Song List -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/songList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@id/btnToggleList"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#252525"
+        android:padding="10dp"
+        android:visibility="gone" />
+
+</RelativeLayout>

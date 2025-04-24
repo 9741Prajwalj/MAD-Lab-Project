@@ -89,19 +89,6 @@
             app:iconGravity="textStart"
             app:iconPadding="8dp"
             app:cornerRadius="8dp"/>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnLogout"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:text="Logout"
-            style="@style/Widget.Material3.Button"
-            app:icon="@drawable/ic_logout"
-            app:iconSize="24dp"
-            app:iconGravity="textStart"
-            app:iconPadding="8dp"
-            app:cornerRadius="8dp"/>
-
         <!-- Feature Icons -->
         <TextView
             android:layout_width="wrap_content"
@@ -230,8 +217,17 @@
                     android:layout_marginTop="8dp"/>
             </LinearLayout>
         </GridLayout>
-
-
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Logout"
+            style="@style/Widget.Material3.Button"
+            app:icon="@drawable/ic_logout"
+            app:iconSize="24dp"
+            app:iconGravity="textStart"
+            app:iconPadding="8dp"
+            app:cornerRadius="8dp"/>
     </LinearLayout>
 
 

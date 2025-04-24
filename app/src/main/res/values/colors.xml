@@ -17,4 +17,5 @@
     <color name="primary">#6750A4</color>
     <color name="on_primary">#FFFFFF</color>
     <color name="invalid_color">#FFFFFF</color>
+    <color name="selected_song">#1DB954</color>
 </resources>
