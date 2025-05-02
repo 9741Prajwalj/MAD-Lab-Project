@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -13,26 +12,41 @@
         android:orientation="vertical"
         android:padding="24dp">
 
-        <!-- Header with logo/icon -->
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="24dp"
-            android:src="@drawable/baseline_account_circle_24"
-            app:tint="?attr/colorPrimary" />
+            android:src="@drawable/ic_admin"
+            app:tint="@color/purple_500" />
 
-        <!-- Title -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="32dp"
-            android:text="Create Account"
-            android:textColor="?attr/colorOnBackground"
+            android:text="Admin Registration"
+            android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:fontFamily="@font/roboto_medium" /> <!-- Use your font -->
+            app:fontFamily="@font/roboto_medium" />
+
+        <!-- Admin Code Field -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/purple_500"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etAdminCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Admin Secret Code"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Name Field -->
         <com.google.android.material.textfield.TextInputLayout
@@ -40,14 +54,14 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             app:boxBackgroundMode="outline"
-            app:boxStrokeColor="?attr/colorPrimary"
+            app:boxStrokeColor="@color/purple_500"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etName"
+                android:id="@+id/etAdminName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Full Name"
+                android:hint="Admin Name"
                 android:inputType="textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -57,14 +71,14 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             app:boxBackgroundMode="outline"
-            app:boxStrokeColor="?attr/colorPrimary"
+            app:boxStrokeColor="@color/purple_500"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etEmail"
+                android:id="@+id/etAdminEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email"
+                android:hint="Admin Email"
                 android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,12 +88,12 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             app:boxBackgroundMode="outline"
-            app:boxStrokeColor="?attr/colorPrimary"
+            app:boxStrokeColor="@color/purple_500"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialComponents.TextInputLayout.OutlinedBox"
             app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etPassword"
+                android:id="@+id/etAdminPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
@@ -92,12 +106,12 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             app:boxBackgroundMode="outline"
-            app:boxStrokeColor="?attr/colorPrimary"
+            app:boxStrokeColor="@color/purple_500"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialComponents.TextInputLayout.OutlinedBox"
             app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etConfirmPassword"
+                android:id="@+id/etAdminConfirmPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Confirm Password"
@@ -106,44 +120,26 @@
 
         <!-- Register Button -->
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnRegister"
+            android:id="@+id/btnAdminRegister"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginBottom="16dp"
-            android:text="REGISTER"
+            android:text="REGISTER AS ADMIN"
             android:textAllCaps="false"
             android:textSize="16sp"
+            app:backgroundTint="@color/purple_500"
             app:cornerRadius="8dp"
+            app:icon="@drawable/ic_admin"
             app:iconGravity="textStart"
             app:iconTint="@color/white" />
 
-        <!-- Divider -->
-        <com.google.android.material.divider.MaterialDivider
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            app:dividerColor="?attr/colorOnSurfaceVariant"
-            android:layout_marginVertical="16dp"/>
-
-        <!-- Login Link -->
+        <!-- User Register Link -->
         <TextView
-            android:id="@+id/tvLogin"
+            android:id="@+id/tvUserRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Already have an account? Sign in"
-            android:textColor="?attr/colorPrimary"
-            android:textSize="14sp"
-            android:drawablePadding="4dp"
-            app:fontFamily="@font/roboto_medium" />
-
-        <!-- Add this just before the closing LinearLayout tag -->
-        <TextView
-            android:id="@+id/tvAdminRegister"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:text="Admin? Register here"
+            android:text="Not Admin? User Register"
             android:textColor="@color/purple_500"
             android:textSize="14sp"
             app:fontFamily="@font/roboto_medium" />

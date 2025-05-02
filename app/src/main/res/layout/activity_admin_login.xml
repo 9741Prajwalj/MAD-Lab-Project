@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -13,21 +12,20 @@
         android:orientation="vertical"
         android:padding="32dp">
 
-        <!-- App Logo/Header -->
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="32dp"
-            android:src="@drawable/ic_login" />
+            android:src="@drawable/ic_admin"
+            app:tint="@color/purple_500" />
 
-        <!-- Title -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="32dp"
-            android:text="Welcome Back"
+            android:text="Admin Login"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -49,12 +47,11 @@
             app:endIconTint="@color/purple_500"
             app:hintTextColor="@color/purple_500">
 
-
-        <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etLoginEmail"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etAdminLoginEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email"
+                android:hint="Admin Email"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -75,9 +72,8 @@
             app:endIconTint="@color/purple_500"
             app:hintTextColor="@color/purple_500">
 
-
-        <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etLoginPassword"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etAdminLoginPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
@@ -87,46 +83,25 @@
 
         <!-- Login Button -->
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnAdminLogin"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginBottom="24dp"
-            android:text="LOGIN"
+            android:text="LOGIN AS ADMIN"
             android:textAllCaps="false"
             app:backgroundTint="@color/purple_500"
             app:cornerRadius="8dp"
-            app:icon="@drawable/ic_arrow_forward"
+            app:icon="@drawable/ic_admin"
             app:iconGravity="textEnd"
             app:iconTint="@color/white" />
 
-        <!-- Divider -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginVertical="16dp"
-            android:background="@color/gray_200" />
-
-        <!-- Register Link -->
+        <!-- User Login Link -->
         <TextView
-            android:id="@+id/tvRegister"
+            android:id="@+id/tvUserLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Don't have an account? Register"
-            android:textColor="@color/purple_500"
-            android:textSize="14sp"
-            android:drawablePadding="4dp"
-            android:drawableEnd="@drawable/ic_arrow_right"
-            app:fontFamily="@font/roboto_medium" />
-
-        <!-- Add this just before the closing LinearLayout tag -->
-        <TextView
-            android:id="@+id/tvAdminLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:text="Admin? Login here"
+            android:text="Not Admin? User Login"
             android:textColor="@color/purple_500"
             android:textSize="14sp"
             app:fontFamily="@font/roboto_medium" />

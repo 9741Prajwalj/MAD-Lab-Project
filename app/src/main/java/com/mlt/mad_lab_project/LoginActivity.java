@@ -50,6 +50,11 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(this, RegisterActivity.class));
             finish();
         });
+        TextView tvAdminLogin = findViewById(R.id.tvAdminLogin);
+        tvAdminLogin.setOnClickListener(v -> {
+            startActivity(new Intent(this, AdminLoginActivity.class));
+            finish();
+        });
     }
 
     private void handleLogin() {

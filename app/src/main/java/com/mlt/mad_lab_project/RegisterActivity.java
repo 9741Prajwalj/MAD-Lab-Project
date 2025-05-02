@@ -49,6 +49,12 @@ public class RegisterActivity extends AppCompatActivity {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
         });
+
+        TextView tvAdminRegister = findViewById(R.id.tvAdminRegister);
+        tvAdminRegister.setOnClickListener(v -> {
+            startActivity(new Intent(this, AdminRegisterActivity.class));
+            finish();
+        });
     }
 
     private void handleRegistration() {
