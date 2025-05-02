@@ -3,112 +3,76 @@ package com.mlt.mad_lab_project;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import com.google.android.material.button.MaterialButton;
+import androidx.fragment.app.Fragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 
 public class HomeActivity extends AppCompatActivity {
-
-    private TextView tvWelcome, tvUserDetails;
-    private ImageButton btnCalculator, btnLocation, btnMusic, btnCamera, btnGallery;
-    private MaterialButton btnTogglePassword, btnLogout;
+    private BottomNavigationView bottomNav;
     private SharedPreferences sharedPreferences;
-    private boolean isPasswordVisible = false;
-    private String realPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        // Initialize views
-        tvWelcome = findViewById(R.id.tvWelcome);
-        tvUserDetails = findViewById(R.id.tvUserDetails);
-        btnTogglePassword = findViewById(R.id.btnTogglePassword);
-        btnLogout = findViewById(R.id.btnLogout);
-        btnCalculator = findViewById(R.id.btnCalculator);
-        btnLocation = findViewById(R.id.btnLocation);
-        btnMusic = findViewById(R.id.btnMusic);
-        btnCamera = findViewById(R.id.btnCamera);
-        btnGallery = findViewById(R.id.btnGallery);
-
-        // Use the same preferences name as used in LoginActivity
+        // Initialize SharedPreferences
         sharedPreferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE);
 
-        displayUserData(false); // Initially show masked password
+        // Setup bottom navigation
+        bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        // Set up button click listeners
-        btnTogglePassword.setOnClickListener(v -> {
-            isPasswordVisible = !isPasswordVisible;
-            displayUserData(isPasswordVisible);
-            btnTogglePassword.setIconResource(isPasswordVisible ?
-                    R.drawable.ic_visibility : R.drawable.ic_visibility_off);
-            btnTogglePassword.setText(isPasswordVisible ?
-                    "Hide Password" : "Show Password");
-        });
-
-        btnLogout.setOnClickListener(v -> {
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            // Only clear the current user, not all preferences
-            editor.remove("current_user");
-            editor.apply();
-            startActivity(new Intent(HomeActivity.this, LoginActivity.class));
-            finish();
-        });
-
-        btnCalculator.setOnClickListener(v ->
-                startActivity(new Intent(HomeActivity.this, CalculatorActivity.class))
-        );
-
-        btnLocation.setOnClickListener(v ->
-                startActivity(new Intent(HomeActivity.this, LocationActivity.class))
-        );
-
-        btnMusic.setOnClickListener(v ->
-                startActivity(new Intent(HomeActivity.this, MusicActivity.class))
-        );
-
-        btnCamera.setOnClickListener(v ->
-                startActivity(new Intent(HomeActivity.this, CameraActivity.class))
-        );
-
-        btnGallery.setOnClickListener(v -> {
-            Intent intent = new Intent(this, GalleryActivity.class);
-            startActivity(intent);
-        });
-    }
-
-    private void displayUserData(boolean showPassword) {
-        String userJson = sharedPreferences.getString("current_user", null);
-
-        if (userJson == null) {
-            tvWelcome.setText("Welcome!");
-            tvUserDetails.setText("User data not found.");
-            return;
+        // Load the default fragment (Profile)
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new ProfileFragment())
+                    .commit();
         }
-
-        // Parse user from JSON
-        User currentUser = new Gson().fromJson(userJson, User.class);
-        String name = currentUser.getName();
-        String email = currentUser.getEmail();
-        realPassword = currentUser.getPassword();  // This is now the original password
-
-        String passwordDisplay = showPassword ? realPassword : maskPassword(realPassword);
-
-        String userDetails = "Account Details:\n\n" +
-                "Name: " + name + "\n" +
-                "Email: " + email + "\n" +
-                "Password: " + passwordDisplay;
-
-        tvWelcome.setText("Welcome, " + name + "!");
-        tvUserDetails.setText(userDetails);
     }
 
-    private String maskPassword(String password) {
-        if (password == null || password.isEmpty()) return "Not set";
-        return "••••••••";
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            item -> {
+                Fragment selectedFragment = null;
+                int itemId = item.getItemId();
+
+                if (itemId == R.id.nav_profile) {
+                    selectedFragment = new ProfileFragment();
+                } else if (itemId == R.id.nav_apps) {
+                    selectedFragment = new AppsFragment();
+                } else if (itemId == R.id.nav_games) {
+                    selectedFragment = new GamesFragment();
+                }
+
+                if (selectedFragment != null) {
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, selectedFragment)
+                            .commit();
+                }
+
+                return true;
+            };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Refresh profile data when returning to activity
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+        if (currentFragment instanceof ProfileFragment) {
+            ((ProfileFragment) currentFragment).displayUserData(
+                    sharedPreferences,
+                    ((ProfileFragment) currentFragment).isPasswordVisible
+            );
+        }
+    }
+
+    // Helper method to get current user (can be used by fragments)
+    public User getCurrentUser() {
+        String userJson = sharedPreferences.getString("current_user", null);
+        if (userJson != null) {
+            return new Gson().fromJson(userJson, User.class);
+        }
+        return null;
     }
 }
