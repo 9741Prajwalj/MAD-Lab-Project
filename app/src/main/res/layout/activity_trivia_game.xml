@@ -28,6 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:textSize="15dp"
         style="@style/Widget.Material3.Button.OutlinedButton"/>
 
     <Button
@@ -35,6 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:textSize="15dp"
         style="@style/Widget.Material3.Button.OutlinedButton"/>
 
     <Button
@@ -42,11 +44,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:textSize="15dp"
         style="@style/Widget.Material3.Button.OutlinedButton"/>
 
     <Button
         android:id="@+id/option4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="15dp"
         style="@style/Widget.Material3.Button.OutlinedButton"/>
 </LinearLayout>

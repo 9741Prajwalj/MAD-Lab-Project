@@ -4,14 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/surface">
+    android:background="@color/surface"
+    android:padding="16dp">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:navigationIcon="@drawable/ic_arrow_back"
-        app:title="Strategy Game"
+        app:title="Tic-Tac-Toe"
         app:titleTextColor="?attr/colorOnSurface"/>
 
     <GridLayout
@@ -21,25 +22,108 @@
         android:layout_weight="1"
         android:columnCount="3"
         android:rowCount="3"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:padding="8dp">
 
         <ImageView
+            android:id="@+id/cell_0"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:scaleType="centerInside"/>
+            android:background="@drawable/cell_border"
+            android:scaleType="centerInside"
+            android:tag="0"/>
 
-        <!-- Repeat 8 more ImageViews for the 3x3 grid -->
+        <ImageView
+            android:id="@+id/cell_1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@drawable/cell_border"
+            android:scaleType="centerInside"
+            android:tag="1"/>
+
+        <ImageView
+            android:id="@+id/cell_2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@drawable/cell_border"
+            android:scaleType="centerInside"
+            android:tag="2"/>
+
+        <ImageView
+            android:id="@+id/cell_3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@drawable/cell_border"
+            android:scaleType="centerInside"
+            android:tag="3"/>
+
+        <ImageView
+            android:id="@+id/cell_4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@drawable/cell_border"
+            android:scaleType="centerInside"
+            android:tag="4"/>
+
+        <ImageView
+            android:id="@+id/cell_5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@drawable/cell_border"
+            android:scaleType="centerInside"
+            android:tag="5"/>
+
+        <ImageView
+            android:id="@+id/cell_6"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@drawable/cell_border"
+            android:scaleType="centerInside"
+            android:tag="6"/>
+
+        <ImageView
+            android:id="@+id/cell_7"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@drawable/cell_border"
+            android:scaleType="centerInside"
+            android:tag="7"/>
+
+        <ImageView
+            android:id="@+id/cell_8"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@drawable/cell_border"
+            android:scaleType="centerInside"
+            android:tag="8"/>
+
     </GridLayout>
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/restart_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="16dp"
         android:text="Restart Game"
-        android:onClick="initializeGame"
+        android:textSize="15dp"
         style="@style/Widget.Material3.Button"/>
 </LinearLayout>

@@ -33,4 +33,7 @@
     <item name="btn_equals" type="id" />
     <item name="textView" type="id" />
     <item name="fullscreenImageView" type="id" />
+    <item name="card_front" type="id"/>
+    <item name="card_position" type="id"/>
+    <item name="card_state" type="id"/>
 </resources>
