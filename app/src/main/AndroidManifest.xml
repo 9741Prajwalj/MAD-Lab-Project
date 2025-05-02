@@ -85,5 +85,20 @@
             android:name=".RegisterActivity"
             android:exported="false"
             android:theme="@style/Theme.MadLabProject"/> <!-- Added theme -->
+        <activity android:name=".PuzzleGameActivity" android:parentActivityName=".HomeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MadLabProject"/>
+        <activity android:name=".MemoryGameActivity" android:parentActivityName=".HomeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MadLabProject"/>
+        <activity android:name=".TriviaGameActivity" android:parentActivityName=".HomeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MadLabProject"/>
+        <activity android:name=".AdventureGameActivity" android:parentActivityName=".HomeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MadLabProject"/>
+        <activity android:name=".StrategyGameActivity" android:parentActivityName=".HomeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MadLabProject"/>
     </application>
 </manifest>

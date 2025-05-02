@@ -1,43 +1,58 @@
 package com.mlt.mad_lab_project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import com.google.android.material.card.MaterialCardView;
 
 public class GamesFragment extends Fragment {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_games, container, false);
 
-        // Game 1
-        MaterialCardView game1Card = view.findViewById(R.id.game1_card);
-        game1Card.setOnClickListener(v -> showToast("Puzzle Game"));
+        // Initialize game cards
+        MaterialCardView puzzleCard = view.findViewById(R.id.game1_card);
+        MaterialCardView memoryCard = view.findViewById(R.id.game2_card);
+        MaterialCardView triviaCard = view.findViewById(R.id.game3_card);
+        MaterialCardView adventureCard = view.findViewById(R.id.game4_card);
+        MaterialCardView strategyCard = view.findViewById(R.id.game5_card);
 
-        // Game 2
-        MaterialCardView game2Card = view.findViewById(R.id.game2_card);
-        game2Card.setOnClickListener(v -> showToast("Memory Game"));
-
-        // Game 3
-        MaterialCardView game3Card = view.findViewById(R.id.game3_card);
-        game3Card.setOnClickListener(v -> showToast("Trivia Quiz"));
-
-        // Game 4
-        MaterialCardView game4Card = view.findViewById(R.id.game4_card);
-        game4Card.setOnClickListener(v -> showToast("Word Search"));
-
-        // Game 5
-        MaterialCardView game5Card = view.findViewById(R.id.game5_card);
-        game5Card.setOnClickListener(v -> showToast("Sudoku"));
+        // Set click listeners
+        puzzleCard.setOnClickListener(v -> launchGame("Puzzle Game"));
+        memoryCard.setOnClickListener(v -> launchGame("Memory Game"));
+        triviaCard.setOnClickListener(v -> launchGame("Trivia Game"));
+        adventureCard.setOnClickListener(v -> launchGame("Adventure Game"));
+        strategyCard.setOnClickListener(v -> launchGame("Strategy Game"));
 
         return view;
     }
 
-    private void showToast(String message) {
-        Toast.makeText(getActivity(), message + " clicked!", Toast.LENGTH_SHORT).show();
+    private void launchGame(String gameName) {
+        Intent intent;
+        switch (gameName) {
+            case "Puzzle Game":
+                intent = new Intent(getActivity(), PuzzleGameActivity.class);
+                break;
+            case "Memory Game":
+                intent = new Intent(getActivity(), MemoryGameActivity.class);
+                break;
+            case "Trivia Game":
+                intent = new Intent(getActivity(), TriviaGameActivity.class);
+                break;
+            case "Adventure Game":
+                intent = new Intent(getActivity(), AdventureGameActivity.class);
+                break;
+            case "Strategy Game":
+                intent = new Intent(getActivity(), StrategyGameActivity.class);
+                break;
+            default:
+                return;
+        }
+        startActivity(intent);
     }
 }
