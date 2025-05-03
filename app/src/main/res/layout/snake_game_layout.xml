@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/game_background">
+
+    <!-- Score Display -->
+    <TextView
+        android:id="@+id/scoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/score_background"
+        android:padding="8dp"
+        android:text="Score: 0"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:shadowColor="@color/black"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Pause Button -->
+    <ImageButton
+        android:id="@+id/pauseButton"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_background"
+        android:contentDescription="Pause"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_pause"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Container for the GameView -->
+    <FrameLayout
+        android:id="@+id/gameSurfaceContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="2dp"
+        app:layout_constraintBottom_toTopOf="@id/controlLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scoreText" />
+
+    <!-- Game Controls -->
+    <RelativeLayout
+        android:id="@+id/controlLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/control_background"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/upButton"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_background"
+            android:contentDescription="Up"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_up"
+            app:backgroundTint="@null" />
+
+        <ImageButton
+            android:id="@+id/leftButton"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_toLeftOf="@id/upButton"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/button_background"
+            android:contentDescription="Left"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_left"
+            app:backgroundTint="@null" />
+
+        <ImageButton
+            android:id="@+id/rightButton"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_toRightOf="@id/upButton"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/button_background"
+            android:contentDescription="Right"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_right"
+            app:backgroundTint="@null" />
+
+        <ImageButton
+            android:id="@+id/downButton"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_below="@id/upButton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_background"
+            android:contentDescription="Down"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_down"
+            app:backgroundTint="@null" />
+    </RelativeLayout>
+
+    <!-- Game Over Overlay -->
+    <RelativeLayout
+        android:id="@+id/gameOverLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        android:background="#AA000000"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/overlay_background"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GAME OVER"
+                android:textColor="@color/red"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:shadowColor="@color/black"
+                android:shadowDx="3"
+                android:shadowDy="3"
+                android:shadowRadius="5" />
+
+            <TextView
+                android:id="@+id/finalScoreText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Score: 0"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="3" />
+
+            <Button
+                android:id="@+id/restartButton"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/button_background"
+                android:text="Play Again"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- Game Paused Overlay -->
+    <RelativeLayout
+        android:id="@+id/pauseLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        android:background="#AA000000"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/overlay_background"
+            android:padding="16dp"
+            android:text="PAUSED"
+            android:textColor="@color/white"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:shadowColor="@color/black"
+            android:shadowDx="3"
+            android:shadowDy="3"
+            android:shadowRadius="5" />
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

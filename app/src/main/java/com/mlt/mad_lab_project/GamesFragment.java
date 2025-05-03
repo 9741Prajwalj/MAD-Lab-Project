@@ -21,6 +21,8 @@ public class GamesFragment extends Fragment {
         MaterialCardView triviaCard = view.findViewById(R.id.game3_card);
         MaterialCardView adventureCard = view.findViewById(R.id.game4_card);
         MaterialCardView strategyCard = view.findViewById(R.id.game5_card);
+        MaterialCardView snakeCard = view.findViewById(R.id.game6_card);
+
 
         // Set click listeners
         puzzleCard.setOnClickListener(v -> launchGame("Puzzle Game"));
@@ -28,6 +30,7 @@ public class GamesFragment extends Fragment {
         triviaCard.setOnClickListener(v -> launchGame("Trivia Game"));
         adventureCard.setOnClickListener(v -> launchGame("Adventure Game"));
         strategyCard.setOnClickListener(v -> launchGame("Strategy Game"));
+        snakeCard.setOnClickListener(v -> launchGame("Snake Game"));
 
         return view;
     }
@@ -49,6 +52,9 @@ public class GamesFragment extends Fragment {
                 break;
             case "Strategy Game":
                 intent = new Intent(getActivity(), StrategyGameActivity.class);
+                break;
+            case "Snake Game":
+                intent = new Intent(getActivity(), SnakeGameActivity.class);
                 break;
             default:
                 return;

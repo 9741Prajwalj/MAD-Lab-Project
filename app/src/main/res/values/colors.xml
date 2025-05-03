@@ -10,6 +10,17 @@
     <color name="gray_500">#9E9E9E</color>
     <color name="gray_200">#EEEEEE</color>
     <color name="red">#FF0000</color>
+    <color name="green">#FF4CAF50</color>
+    <color name="snake_color">#FF4CAF50</color>
+    <color name="food_color">#FFF44336</color>
+    <color name="snake_green">#FF4CAF50</color>
+    <color name="dark_green">#FF2E7D32</color>
+    <color name="snake_green_light">#4CAF50</color>
+    <color name="snake_green_mid">#388E3C</color>
+    <color name="snake_green_dark">#2E7D32</color>
+    <color name="snake_scale">#A5D6A7</color>
+    <color name="tongue_red">#F44336</color>
+    <color name="tongue_red_dark">#D32F2F</color>
     <!-- Material 3 Color System -->
     <color name="surface">#FFFBFE</color>
     <color name="on_surface">#1C1B1F</color>

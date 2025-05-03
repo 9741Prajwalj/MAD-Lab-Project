@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Gradient Definition for Snake Body -->
+    <group>
+        <clip-path
+            android:pathData="M4,20C4,20 6,18 8,16C10,14 12,12 14,12C16,12 18,14 20,16C22,18 22,20 22,20C22,21 21,22 20,22H4C3,22 2,21 2,20Z"/>
+        <path
+            android:pathData="M4,20C4,20 6,18 8,16C10,14 12,12 14,12C16,12 18,14 20,16C22,18 22,20 22,20C22,21 21,22 20,22H4C3,22 2,21 2,20Z"
+            android:fillColor="#4CAF50">
+            <gradient
+                android:id="@+id/snakeBodyGradient"
+                android:startX="2"
+                android:startY="12"
+                android:endX="22"
+                android:endY="22"
+                android:type="linear">
+                <item
+                    android:offset="0.0"
+                    android:color="#4CAF50" />
+                <item
+                    android:offset="0.5"
+                    android:color="#388E3C" />
+                <item
+                    android:offset="1.0"
+                    android:color="#2E7D32" />
+            </gradient>
+        </path>
+    </group>
+
+    <!-- Snake Body Outline -->
+    <path
+        android:pathData="M4,20C4,20 6,18 8,16C10,14 12,12 14,12C16,12 18,14 20,16C22,18 22,20 22,20C22,21 21,22 20,22H4C3,22 2,21 2,20Z"
+        android:fillColor="#00000000"
+        android:strokeColor="#2E7D32"
+        android:strokeWidth="0.5" />
+
+    <!-- Scale Pattern (Separate Paths for Each Circle) -->
+    <path
+        android:pathData="M6,19A1,1 0 0,1 7,20A1,1 0 0,1 6,21A1,1 0 0,1 5,20A1,1 0 0,1 6,19Z"
+        android:fillColor="#A5D6A7"
+        android:fillAlpha="0.6" />
+    <path
+        android:pathData="M10,17A1,1 0 0,1 11,18A1,1 0 0,1 10,19A1,1 0 0,1 9,18A1,1 0 0,1 10,17Z"
+        android:fillColor="#A5D6A7"
+        android:fillAlpha="0.6" />
+    <path
+        android:pathData="M14,15A1,1 0 0,1 15,16A1,1 0 0,1 14,17A1,1 0 0,1 13,16A1,1 0 0,1 14,15Z"
+        android:fillColor="#A5D6A7"
+        android:fillAlpha="0.6" />
+    <path
+        android:pathData="M18,17A1,1 0 0,1 19,18A1,1 0 0,1 18,19A1,1 0 0,1 17,18A1,1 0 0,1 18,17Z"
+        android:fillColor="#A5D6A7"
+        android:fillAlpha="0.6" />
+
+    <!-- Snake Head -->
+    <path
+        android:pathData="M20,16C21,16 22,15 22,14C22,13 21,12 20,12C19,12 18,13 18,14C18,15 19,16 20,16Z"
+        android:fillColor="#388E3C"
+        android:strokeColor="#2E7D32"
+        android:strokeWidth="0.5" />
+
+    <!-- Snake Eye -->
+    <path
+        android:pathData="M20.5,13.5A0.75,0.75 0 0,1 21.25,14.25A0.75,0.75 0 0,1 20.5,15A0.75,0.75 0 0,1 19.75,14.25A0.75,0.75 0 0,1 20.5,13.5Z"
+        android:fillColor="#FFFFFF" />
+
+    <!-- Eye Pupil -->
+    <path
+        android:pathData="M20.5,14A0.3,0.3 0 0,1 20.8,14.3A0.3,0.3 0 0,1 20.5,14.6A0.3,0.3 0 0,1 20.2,14.3A0.3,0.3 0 0,1 20.5,14Z"
+        android:fillColor="#000000" />
+
+    <!-- Forked Tongue -->
+    <path
+        android:pathData="M22,14L23,13.5L22.5,14L23,14.5Z"
+        android:fillColor="#F44336"
+        android:strokeColor="#D32F2F"
+        android:strokeWidth="0.2" />
+
+</vector>
