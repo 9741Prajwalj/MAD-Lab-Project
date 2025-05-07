@@ -1,5 +1,6 @@
 package com.mlt.mad_lab_project;
 
+import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -33,6 +34,18 @@ public class AppsFragment extends Fragment {
         // Gallery Card
         MaterialCardView galleryCard = view.findViewById(R.id.gallery_card);
         galleryCard.setOnClickListener(v -> startActivity(new Intent(getActivity(), GalleryActivity.class)));
+
+        // NotePad Card
+        MaterialCardView notepadCard = view.findViewById(R.id.notepad_card);
+        notepadCard.setOnClickListener(v -> startActivity(new Intent(getActivity(), NotePadActivity.class)));
+
+        // Google Search Card
+        MaterialCardView googleCard = view.findViewById(R.id.google_card);
+        googleCard.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+            intent.putExtra(SearchManager.QUERY, ""); // Empty query opens the search UI
+            startActivity(intent);
+        });
 
         return view;
     }

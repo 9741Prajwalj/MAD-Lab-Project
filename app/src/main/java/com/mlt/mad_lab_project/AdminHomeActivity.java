@@ -47,7 +47,7 @@ public class AdminHomeActivity extends AppCompatActivity {
         Admin currentAdmin = gson.fromJson(adminJson, Admin.class);
 
         if (currentAdmin != null) {
-            tvWelcomeAdmin.setText("Welcome, " + currentAdmin.getName());
+            tvWelcomeAdmin.setText("Welcome,to AppSuite Admin 😎❤️" + currentAdmin.getName());
         }
 
         // Setup RecyclerView

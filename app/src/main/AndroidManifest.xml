@@ -103,5 +103,8 @@
         <activity android:name=".SnakeGameActivity" android:parentActivityName=".HomeActivity"
             android:exported="false"
             android:theme="@style/Theme.MadLabProject"/>
+        <activity android:name=".NotePadActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MadLabProject"/>
     </application>
 </manifest>

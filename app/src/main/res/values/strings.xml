@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mad-lab-project</string>
+    <string name="app_name">AppSuite</string>
     <string name="calculator">Calculator</string>
     <string name="location">Location</string>
     <string name="music">Music</string>

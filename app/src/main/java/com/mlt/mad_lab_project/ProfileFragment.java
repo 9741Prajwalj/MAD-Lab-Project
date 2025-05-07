@@ -76,7 +76,7 @@ public class ProfileFragment extends Fragment {
                 "Email: " + email + "\n" +
                 "Password: " + passwordDisplay;
 
-        tvWelcome.setText("Welcome, " + name + "!");
+        tvWelcome.setText("Welcome,to AppSuite 😁😉" + name + "!");
         tvUserDetails.setText(userDetails);
     }
 
