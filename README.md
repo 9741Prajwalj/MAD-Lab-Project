@@ -9,9 +9,9 @@ Language: Java 21
 
 Architecture: MVVM/MVC (as suitable)
 
-Storage: SharedPreferences, SQLite / Firebase / Backend API
+Storage: Local Storage only
 
-API Integration: Retrofit / REST APIs
+API Integration: NAN
 
 👤 User Flow
 1. Login & Registration
@@ -50,9 +50,7 @@ Tic Tac Toe
 (Add additional games as needed)
 
 👤 Profile Section
-Displays user's name, email, phone, address, etc.
-
-Option to edit/update profile.
+Displays user's name, email, phone, Password.
 
 Logout and status management.
 
@@ -63,18 +61,14 @@ Dashboard showing the list of all registered users under them.
 
 View details of each user (name, email, location, registration date, etc.).
 
-Manage user accounts (view, enable/disable, delete, etc.).
-
 Possibly analytics or charts for user activity.
 
 🔐 Security & Data Management
 SharedPreferences for session management.
 
-Token-based authentication for API calls.
-
 Admin and user roles handled separately.
 
-Firebase/Database used to store and fetch user data and activity logs.
+Local Storage is used to store and fetch user data and activity logs.
 
 📲 Summary
 This app is an all-in-one utility hub for users with engaging features (tools + games), while providing administrative control to the admin for user management. It's designed for both entertainment and productivity, ensuring personalized access and centralized control.
